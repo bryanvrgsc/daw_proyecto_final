@@ -9,7 +9,7 @@
     <meta name="author" content="TemplateMo">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
-    <title>Café Nook - Iniciar Sesión/Registrarse</title>
+    <title>Café Nook - Tienda</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -45,7 +45,7 @@
                             <li><a href="index.php">Home</a></li>
                             <li class="scroll-to-section"><a href="#top" class="active">Tienda</a></li>
                             <li><a href="contacto.php">Contacto</a></li>
-                            <li><a href="login_signin.php">Iniciar Sesión/Registrarse</a></li>
+                            <li><a href="login_signin.php">Registro/Inicio de Sesión</a></li>
                         </ul>
                         <a class='menu-trigger'>
                             <span>Login/Sign In</span>
@@ -54,25 +54,22 @@
                     </nav>
                 </div>
             </div>
-
         </div>
     </header>
 
     <!-- ***** Main Banner Area Start ***** -->
-    <section class="section main-banner" id="top" data-section="section1">
-        <video autoplay muted loop id="bg-video">
-            <source src="assets/images/video.mp4" type="video/mp4" />
-        </video>
+
+    <section class="heading-page header-text" id="top">
 
         <div class="video-overlay header-text">
             <div class="container">
                 <div class="row">
+                    <span style="height: 155px; display: block;"></span>
                     <div class="col-lg-12">
                         <div class="caption">
                             <h2>Tienda</h2>
-
                             <div class="main-button-red">
-                                <div class="scroll-to-section"><a href="#contact">Notificamé</a></div>
+                                <div class="scroll-to-section"><a href="#contact">Conoce nuestros productos</a></div>
                             </div>
                         </div>
                     </div>
@@ -81,6 +78,143 @@
         </div>
     </section>
 
+    <section class="meetings-page" id="meetings">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="filters">
+                                <ul>
+                                    <li data-filter="*" class="active">Todos los productos</li>
+                                    <li data-filter=".soon">Proximamente</li>
+                                    <li data-filter=".imp">Important</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row grid">
+                                <div class="col-lg-4 templatemo-item-col all soon">
+                                    <div class="meeting-item">
+                                        <div class="thumb">
+                                            <div class="price">
+                                                <span>$150.00</span>
+                                            </div>
+                                            <a href="meeting-details.html"><img src="assets/images/carousel/cafe-mexicano.jpg" alt=""></a>
+                                        </div>
+                                        <div class="down-content">
+                                            <a href="meeting-details.html">
+                                                <h4>Café Mexicano</h4>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 templatemo-item-col all imp">
+                                    <div class="meeting-item">
+                                        <div class="thumb">
+                                            <div class="price">
+                                                <span>$150.00</span>
+                                            </div>
+                                            <a href="meeting-details.html"><img src="assets/images/carousel/cafe-colombiano.jpg" alt=""></a>
+                                        </div>
+                                        <div class="down-content">
+                                            <a href="meeting-details.html">
+                                                <h4>Café Colombiano</h4>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 templatemo-item-col all soon">
+                                    <div class="meeting-item">
+                                        <div class="thumb">
+                                            <div class="price">
+                                                <span>$150.00</span>
+                                            </div>
+                                            <a href="meeting-details.html"><img src="assets/images/carousel/cafe-brasilero.jpg" alt=""></a>
+                                        </div>
+                                        <div class="down-content">
+                                            <a href="meeting-details.html">
+                                                <h4>Café Brasileño</h4>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 templatemo-item-col all att">
+                                    <div class="meeting-item">
+                                        <div class="thumb">
+                                            <div class="price">
+                                                <span>$150.00</span>
+                                            </div>
+                                            <a href="meeting-details.html"><img src="assets/images/carousel/cafe-cubano.jpg" alt=""></a>
+                                        </div>
+                                        <div class="down-content">
+                                            <a href="meeting-details.html">
+                                                <h4>Cafe Cubano</h4>
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 templatemo-item-col all att">
+                                    <div class="meeting-item">
+                                        <div class="thumb">
+                                            <div class="price">
+                                                <span>$150.00</span>
+                                            </div>
+                                            <a href="meeting-details.html"><img src="assets/images/carousel/cafe-sueco.jpg" alt=""></a>
+                                        </div>
+                                        <div class="down-content">
+                                            <a href="meeting-details.html">
+                                                <h4>Café Sueco</h4>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 templatemo-item-col all imp">
+                                    <div class="meeting-item">
+                                        <div class="thumb">
+                                            <div class="price">
+                                                <span>$150.00</span>
+                                            </div>
+                                            <a href="meeting-details.html"><img src="assets/images/carousel/cafe-guatemalteco.jpg" alt=""></a>
+                                        </div>
+                                        <div class="down-content">
+                                            <a href="meeting-details.html">
+                                                <h4>Café Guatemalteco</h4>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="pagination">
+                                <ul>
+                                    <li><a href="#">1</a></li>
+                                    <li class="active"><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Copyright © 2022
+                <br>
+                Diseñado por: <a href="https://github.com/bryanvrgsc" target="_parent" title="GitHub">Bryan
+                    Vargas</a>
+                <br>
+                Distribuido por: <a href="https://www.anahuac.mx  " target="_blank" title="Universidad Anáhuac">Universidad
+                    Anáhuac</a>
+            </p>
+        </div>
+    </section>
 
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->

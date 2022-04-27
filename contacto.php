@@ -44,7 +44,7 @@
                             <li><a href="index.php">Home</a></li>
                             <li><a href="tienda.php">Tienda</a></li>
                             <li class="scroll-to-section"><a href="#top" class="active">Contacto</a></li>
-                            <li><a href="login_signin.php">Iniciar Sesión/Registrarse</a></li>
+                            <li><a href="login_signin.php">Registro/Inicio de Sesión</a></li>
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -98,7 +98,7 @@
                             <h2>Contacto</h2>
                             <h6>Envianos mensaje</h6>
                             <div class="main-button-red">
-                                <div class="scroll-to-section"><a href="#contact">Notificamé</a></div>
+                                <div class="scroll-to-section"><a href="#contact">Sugerencias y Quejas</a></div>
                             </div>
                         </div>
                     </div>

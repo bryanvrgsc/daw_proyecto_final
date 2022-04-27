@@ -44,7 +44,7 @@
               <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
               <li><a href="tienda.php">Tienda</a></li>
               <li class="scroll-to-section"><a href="#contact">Contacto</a></li>
-              <li><a href="login_signin.php">Iniciar Sesión/Registrarse</a></li>
+              <li><a href="login_signin.php">Registro/Inicio de Sesión</a></li>
             </ul>
             <a class='menu-trigger'>
               <span>Menu</span>
@@ -176,6 +176,7 @@
   </section>
 
   <section class="our-courses" id="courses">
+
     <div class="container">
       <div class="row">
         <div class="col-lg-12">

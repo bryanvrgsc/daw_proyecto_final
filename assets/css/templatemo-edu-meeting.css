@@ -1491,7 +1491,8 @@ upcoming meetings page
 */
 
 section.meetings-page {
-  background-image: url(../images/meetings-page-bg.jpg);
+  background-color: black;
+  /* background-image: url(../images/fondo-page-bg.jpg); */
   background-position: center center;
   background-attachment: fixed;
   background-repeat: no-repeat;
