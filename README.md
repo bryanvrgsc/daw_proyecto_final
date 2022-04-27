@@ -1,5 +1,4 @@
 # Proyecto Final
-
  ## Base de datos
  * Producto
    * ID
@@ -9,7 +8,6 @@
    * Cantidad_Almacen
    * Fabricante
    * Origen
-
  * Usuarios
    * ID
    * Nombre
@@ -18,9 +16,12 @@
    * Fecha_Nacimiento
    * Datos bancarios
    * Dirección
-
  * Historial
    * ID_Usuario
    * Producto_Comprado
+  
+## Sitio prelanzamiento
+Función de registro de usuarios [Café Nook](https://lab.anahuac.mx/~a00348428/cafenook/index.php "Café Nook").
 
  ## Interfaz
+
