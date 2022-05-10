@@ -95,23 +95,16 @@
                 echo $console;
             }
 
-
-
             $fecha = new DateTime();
             $string = date_timestamp_get($fecha);
 
-
-
-            $nombre = $_POST["nombre"] = "";
-            $email = $_POST["email"] = "";
-            $password = $_POST["password"] = "";
-
-            $logemail = $_POST["logemail"] = "";
-            $logpassword = $_POST["logpassword"] = "";
-
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
                 if (isset($_POST['btnregistrar'])) {
-                    // echo $num;
+                    $nombre = $_POST["nombre"];
+                    $email = $_POST["email"];
+                    $password = $_POST["password"];
+
                     if (empty($_POST["nombre"])) {
                         // $numErr = "Ingrese el nombre";
                     } else if (empty($_POST["email"])) {
@@ -121,12 +114,18 @@
                     } else {
                         mysqli_query($con, "INSERT INTO usuario (id_usuario, nombre, email, password, fecha_nacimiento, datos_bancarios)
                         VALUES ('$string', '$nombre', '$email', '$password','2006-07-04','099878877123123');");
-                        // $numErr = "DATOS GUARDADOS EXITOSAMENTE *";
+                        echo "
+                         <div class='alert alert-success' role='alert'>
+                         Se registro con éxito <br></div>
+                        ";
                         mysqli_close($con);
                     }
                 }
 
                 if (isset($_POST['btnlogin'])) {
+                    $logemail = $_POST["logemail"];
+                    $logpassword = $_POST["logpassword"];
+
                     if (empty($_POST["logemail"])) {
                         // $numErr = "Ingrese el email";
                     } else if (empty($_POST["logpassword"])) {
