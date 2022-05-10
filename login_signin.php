@@ -141,6 +141,11 @@
 
                             header("location: tienda_session.php");
                             mysqli_close($con);
+                        } else {
+                            echo "
+                            <div class='alert alert-danger' role='alert'>
+                            Error al iniciar sesión <br></div>
+                            ";
                         }
                     }
                 }

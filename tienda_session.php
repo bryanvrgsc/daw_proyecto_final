@@ -54,6 +54,14 @@
                     </nav>
                 </div>
             </div>
+            <?php
+
+            session_start();
+            if (!isset($_SESSION['nombre_usuario'])) {
+                header("location: login_signin.php");
+            }
+
+            ?>
         </div>
     </header>
 
