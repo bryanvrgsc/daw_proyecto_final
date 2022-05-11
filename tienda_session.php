@@ -117,7 +117,7 @@ require_once('./item.php');
                     <div class='alert alert-success' role='alert'>
                     Se agrego el producto<br></div>
                     ";
-                echo "<meta http-equiv='refresh' content='3'>";
+                echo "<meta http-equiv='refresh' content='2'>";
 
                 // ! SE CREA LA SESIÓN
                 // $_SESSION['cart'][0] = $item_array;

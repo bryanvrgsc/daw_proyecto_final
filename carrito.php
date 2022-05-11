@@ -192,7 +192,7 @@ if (isset($_GET['remove'])) {
                             if (isset($_POST['disminuir'])) {
                                 $valor = $_POST['producto_id'];
                                 $cantidad = $_POST['cantidad'];
-                                if ($cantidad == 1) {
+                                if ($cantidad <= 1) {
                                     $borrar = mysqli_query($con, "DELETE FROM carrito WHERE id_usuario = '$usuario' AND id_producto = '$valor'");
                                 }
                                 $cantidad = (int) $cantidad - 1;
@@ -211,6 +211,9 @@ if (isset($_GET['remove'])) {
                             if (isset($_POST['actualizar'])) {
                                 $valor = $_POST['producto_id'];
                                 $cantidad = $_POST['cantidad'];
+                                if ($cantidad <= 0) {
+                                    $borrar = mysqli_query($con, "DELETE FROM carrito WHERE id_usuario = '$usuario' AND id_producto = '$valor'");
+                                }
                                 $actualizar = mysqli_query($con, "UPDATE carrito SET cantidad = '$cantidad' WHERE id_usuario = '$usuario' AND id_producto = '$valor'");
                                 echo "<meta http-equiv='refresh' content='0'>";
                             }
