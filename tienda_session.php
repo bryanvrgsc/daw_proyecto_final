@@ -113,9 +113,10 @@ require_once('./item.php');
                 // $item_array = array(
                 //     'producto_id' => $_POST['producto_id']
                 // );
+
                 echo "
                     <div class='alert alert-success' role='alert'>
-                     Test producto $valor<br></div>
+                    Se agrego el producto<br></div>
                     ";
 
                 // ! SE CREA LA SESIÓN
@@ -137,7 +138,7 @@ require_once('./item.php');
                         $nvalor = $avalor + 1;
                         $agrega = mysqli_query($con, "UPDATE carrito SET cantidad = '$nvalor' WHERE id_usuario = '$usuario' AND id_producto = '$valor'");
 
-                        $existe = mysqli_num_rows($verifica);
+                        // $existe = mysqli_num_rows($verifica);
 
                         while ($row = mysqli_fetch_array($verifica)) {
                             $count = $count + (int)$row['cantidad'];

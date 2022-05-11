@@ -8,7 +8,7 @@ function item($producto_nombre, $producto_precio, $producto_imagen, $producto_id
     <div class='meeting-item'>
         <div class='thumb'>
             <div class='price'>
-                <span>$ $producto_precio </span>
+                <span>$$producto_precio</span>
             </div>
             <img src='data:image/jpg;base64,$producto_imagen' alt='$producto_nombre' />
         </div>
@@ -44,7 +44,7 @@ function carrito($producto_nombre, $producto_precio, $producto_imagen, $producto
 {
     $carrito = "
     
-    <form action='cart.php?action=remove&id=$producto_id' method='post' class='cart-items'>
+    
         <div class='border rounded'>
             <div class='row bg-white'>
                 <div class='col-md-4'>
@@ -56,18 +56,41 @@ function carrito($producto_nombre, $producto_precio, $producto_imagen, $producto
                     <h5 class='pt-2'>$$producto_precio</h5>
                     <br>
                     <!-- <button type='submit' class='btn btn-warning'>Guardar para despues</button> -->
-                    <button type='submit' class='btn btn-danger mx-2' name='remove'>Eliminar</button>
+                    <form action='carrito.php' method='post'>
+                        <button type='submit' class='btn btn-danger mx-2' name='borrar'>Eliminar</button>
+                        <input type='hidden' name='producto_id' value='$producto_id'>
+                    </form>
                 </div>
                 <div class='col-md-3 py-5'>
                     <div>
-                        <button type='button' class='btn bg-light border rounded-circle'> <i class='fa fa-plus' aria-hidden='true'></i> </button>
-                        <input type='text' value='$cantidad' class='form-control w-25'>
-                        <button type='button' class='btn bg-light border rounded-circle'> <i class='fa fa-minus' aria-hidden='true'></i> </button>
+                    <form action='carrito.php' method='post'>
+                        <button type='submit' class='btn bg-light border rounded-circle' name='aumentar'> <i class='fa fa-plus' aria-hidden='true'></i> </button>
+                        <input type='hidden' name='producto_id' value='$producto_id'>
+                        <input type='hidden' name='cantidad' value='$cantidad'>
+                    </form>
+                    <form action='carrito.php' method='post'>
+                        <div class='container'>
+                            <div class='row'>
+                                <div class='col-lg'>
+                                    <input type='text' name='cantidad' value='$cantidad' class='form-control w-26'>
+                                    <input type='hidden' name='producto_id' value='$producto_id'>
+                                </div>
+                                <div class='col'>
+                                <button type='submit' class='btn btn-warning' name='actualizar'>Actualizar</button>
+                                </div>
+                            </div>
+                        </div> 
+                    </form> 
+                    <form action='carrito.php' method='post'>    
+                        <button type='submit' class='btn bg-light border rounded-circle' name='disminuir'> <i class='fa fa-minus' aria-hidden='true'></i> </button>
+                        <input type='hidden' name='cantidad' value='$cantidad'>
+                        <input type='hidden' name='producto_id' value='$producto_id'>
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
+    
 
     ";
 
