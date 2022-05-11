@@ -63,12 +63,12 @@ function carrito($producto_nombre, $producto_precio, $producto_imagen, $producto
                 </div>
                 <div class='col-md-3 py-5'>
                     <div>
-                    <form action='carrito.php' method='post'>
+                    <form action='' method='post'>
                         <button type='submit' class='btn bg-light border rounded-circle' name='aumentar'> <i class='fa fa-plus' aria-hidden='true'></i> </button>
                         <input type='hidden' name='producto_id' value='$producto_id'>
                         <input type='hidden' name='cantidad' value='$cantidad'>
                     </form>
-                    <form action='carrito.php' method='post'>
+                    <form action='' method='post'>
                         <div class='container'>
                             <div class='row'>
                                 <div class='col-lg'>
@@ -81,7 +81,7 @@ function carrito($producto_nombre, $producto_precio, $producto_imagen, $producto
                             </div>
                         </div> 
                     </form> 
-                    <form action='carrito.php' method='post'>    
+                    <form action='' method='post'>    
                         <button type='submit' class='btn bg-light border rounded-circle' name='disminuir'> <i class='fa fa-minus' aria-hidden='true'></i> </button>
                         <input type='hidden' name='cantidad' value='$cantidad'>
                         <input type='hidden' name='producto_id' value='$producto_id'>

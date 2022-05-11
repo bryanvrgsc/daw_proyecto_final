@@ -1,9 +1,9 @@
 <?php
+
 session_start();
 if (!isset($_SESSION['nombre_usuario'])) {
     header("location: login_signin.php");
 }
-
 require_once("./item.php");
 
 if (isset($_GET['remove'])) {
@@ -94,6 +94,7 @@ if (isset($_GET['remove'])) {
                                             echo "<span class='badge bg-primary rounded-pill'>$count</span>";
                                         }
                                     }
+
                                     ?>
                                 </a>
                             </li>
@@ -167,6 +168,15 @@ if (isset($_GET['remove'])) {
                             }
                             if ($total == 0) {
                                 echo "<h6>No hay productos en el carrito </h6>";
+                            } else {
+                                echo "<form action='carrito.php' method='post'>
+                                <button type='submit' class='btn btn-danger mx-2' name='vaciar'>Vaciar carrito</button>
+                                </form>";
+                                echo "<form action='checkout.php' method='post'>
+                                <button type='submit' class='btn btn-success mx-2' name='vaciar'>Proceder al pago</button>
+                                
+
+                                </form>";
                             }
 
                             // ! BOTONES PARA AUMENTAR
@@ -175,6 +185,7 @@ if (isset($_GET['remove'])) {
                                 $cantidad = $_POST['cantidad'];
                                 $cantidad = (int) $cantidad + 1;
                                 $agrega = mysqli_query($con, "UPDATE carrito SET cantidad = '$cantidad' WHERE id_usuario = '$usuario' AND id_producto = '$valor'");
+                                echo "<meta http-equiv='refresh' content='0'>";
                             }
 
                             // ! BOTONES PARA DISMINUIR
@@ -186,12 +197,14 @@ if (isset($_GET['remove'])) {
                                 }
                                 $cantidad = (int) $cantidad - 1;
                                 $disminuir = mysqli_query($con, "UPDATE carrito SET cantidad = '$cantidad' WHERE id_usuario = '$usuario' AND id_producto = '$valor'");
+                                echo "<meta http-equiv='refresh' content='0'>";
                             }
 
                             // ! BOTON PARA BORRAR
                             if (isset($_POST['borrar'])) {
                                 $valor = $_POST['producto_id'];
                                 $borrar = mysqli_query($con, "DELETE FROM carrito WHERE id_usuario = '$usuario' AND id_producto = '$valor'");
+                                echo "<meta http-equiv='refresh' content='0'>";
                             }
 
                             // ! ACTUALIZAR
@@ -199,15 +212,17 @@ if (isset($_GET['remove'])) {
                                 $valor = $_POST['producto_id'];
                                 $cantidad = $_POST['cantidad'];
                                 $actualizar = mysqli_query($con, "UPDATE carrito SET cantidad = '$cantidad' WHERE id_usuario = '$usuario' AND id_producto = '$valor'");
+                                echo "<meta http-equiv='refresh' content='0'>";
+                            }
+
+                            // ! VACIAR CARRITO
+                            if (isset($_POST['vaciar'])) {
+                                $actualizar = mysqli_query($con, "DELETE FROM carrito WHERE id_usuario = '$usuario'");
+                                echo "<meta http-equiv='refresh' content='0'>";
                             }
                         }
                         ?>
-
-
-
-
                     </div>
-
                 </div>
                 <div class="col-md-4 offset-md-1 border rounded mt-5 bg-white h-25">
                     <div class="pt-4">

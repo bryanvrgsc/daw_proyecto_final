@@ -5,7 +5,7 @@ if (!isset($_SESSION['nombre_usuario'])) {
     header("location: login_signin.php");
 }
 require_once('./item.php');
-
+header("Refresh:0");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -117,7 +117,6 @@ require_once('./item.php');
                     <div class='alert alert-success' role='alert'>
                     Se agrego el producto<br></div>
                     ";
-                echo "<meta http-equiv='refresh' content='3'>";
 
                 // ! SE CREA LA SESIÓN
                 // $_SESSION['cart'][0] = $item_array;
