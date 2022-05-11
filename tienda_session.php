@@ -54,7 +54,8 @@ require_once('./item.php');
                         <ul class="nav">
                             <li><a href="index.php">Home</a></li>
                             <li class="scroll-to-section"><a href="#top" class="active">Tienda</a></li>
-                            <li><a href="contacto.php">Contacto</a></li>
+
+                            <li><a href="cuenta.php">Cuenta</a></li>
                             <li><a href="cerrar_session.php">Cerrar Sesión</a></li>
                             <li>
                                 <a href="carrito.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito
@@ -62,9 +63,9 @@ require_once('./item.php');
                                     <?php
                                     if (isset($_SESSION['cart'])) {
                                         $count = count($_SESSION['cart']);
-                                        echo "<span id='cart_count' class='text-warning bg-light'>$count</span>";
+                                        echo "<span class='badge bg-primary rounded-pill'>$count</span>";
                                     } else {
-                                        echo "<span id='cart_count' class='text-warning bg-light'>0</span>";
+                                        echo "<span class='badge bg-primary rounded-pill'>0</span>";
                                     }
                                     ?>
                                 </a>

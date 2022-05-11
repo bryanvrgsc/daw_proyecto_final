@@ -65,8 +65,8 @@ if (isset($_GET['remove'])) {
 
                         <ul class="nav">
                             <li><a href="index.php">Home</a></li>
-                            <li class="scroll-to-section"><a href="#top">Tienda</a></li>
-                            <li><a href="contacto.php">Contacto</a></li>
+                            <li><a href="tienda_session.php">Tienda</a></li>
+                            <li><a href="cuenta.php">Cuenta</a></li>
                             <li><a href="cerrar_session.php">Cerrar Sesión</a></li>
                             <li>
                                 <a href="carrito.php" class="active"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito
@@ -74,9 +74,9 @@ if (isset($_GET['remove'])) {
                                     <?php
                                     if (isset($_SESSION['cart'])) {
                                         $count = count($_SESSION['cart']);
-                                        echo "<span id='cart_count' class='text-warning bg-light'>$count</span>";
+                                        echo "<span class='badge bg-primary rounded-pill'>$count</span>";
                                     } else {
-                                        echo "<span id='cart_count' class='text-warning bg-light'>0</span>";
+                                        echo "<span class='badge bg-primary rounded-pill'>0</span>";
                                     }
                                     ?>
                                 </a>
@@ -92,7 +92,7 @@ if (isset($_GET['remove'])) {
 
     <section class="heading-page header-text" id="top">
 
-        <div class="video-overlay2 header-text">
+        <div class="video-overlay3 header-text">
             <div class="container">
                 <div class="row">
                     <span style="height: 155px; display: block;"></span>
@@ -151,9 +151,9 @@ if (isset($_GET['remove'])) {
 
                             if (isset($_SESSION['cart'])) {
                                 count($_SESSION['cart']);
-                                echo "<h6> Price ($count items)</h6>";
+                                echo "<h6> Price ($count items)</h6> <br>";
                             } else {
-                                echo "<h6> Price (0 items)</h6>";
+                                echo "<h6> Price (0 items)</h6> <br>";
                             }
                             ?>
                             <h6>Monto a Pagar</h6>
