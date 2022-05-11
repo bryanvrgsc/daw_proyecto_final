@@ -712,6 +712,15 @@ banner
     width: 100%;
 }
 
+.video-overlay2 {
+  position: absolute;
+    background-color: rgba(31,39,43,0.75);
+    top: 0;
+    left: 0;
+    right: 0;
+    padding-bottom: 60px;
+}
+
 .main-banner .caption {
   position: absolute;
   top: 50%;
@@ -1491,7 +1500,7 @@ upcoming meetings page
 */
 
 section.meetings-page {
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   /* background-image: url(../images/fondo-page-bg.jpg); */
   background-position: center center;
   background-attachment: fixed;

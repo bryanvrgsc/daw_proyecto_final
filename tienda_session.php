@@ -1,3 +1,8 @@
+<?php
+
+require_once('./item.php');
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -46,12 +51,14 @@
                             <li class="scroll-to-section"><a href="#top" class="active">Tienda</a></li>
                             <li><a href="contacto.php">Contacto</a></li>
                             <li><a href="cerrar_session.php">Cerrar Sesión</a></li>
+                            <li><a href="">Carrito</a></li>
                         </ul>
-                        <a class='menu-trigger'>
-                            <span>Login/Sign In</span>
-                        </a>
-                        <!-- ***** Menu End ***** -->
+
+
+
+
                     </nav>
+
                 </div>
             </div>
             <?php
@@ -69,7 +76,7 @@
 
     <section class="heading-page header-text" id="top">
 
-        <div class="video-overlay header-text">
+        <div class="video-overlay2 header-text">
             <div class="container">
                 <div class="row">
                     <span style="height: 155px; display: block;"></span>
@@ -88,129 +95,37 @@
 
     <section class="meetings-page" id="meetings">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="filters">
-                                <ul>
-                                    <li data-filter="*" class="active">Todos los productos</li>
-                                    <li data-filter=".soon">Proximamente</li>
-                                    <li data-filter=".imp">Important</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="row grid">
-                                <div class="col-lg-4 templatemo-item-col all soon">
-                                    <div class="meeting-item">
-                                        <div class="thumb">
-                                            <div class="price">
-                                                <span>$150.00</span>
-                                            </div>
-                                            <a href="meeting-details.html"><img src="assets/images/carousel/cafe-mexicano.jpg" alt=""></a>
-                                        </div>
-                                        <div class="down-content">
-                                            <a href="meeting-details.html">
-                                                <h4>Café Mexicano</h4>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 templatemo-item-col all imp">
-                                    <div class="meeting-item">
-                                        <div class="thumb">
-                                            <div class="price">
-                                                <span>$150.00</span>
-                                            </div>
-                                            <a href="meeting-details.html"><img src="assets/images/carousel/cafe-colombiano.jpg" alt=""></a>
-                                        </div>
-                                        <div class="down-content">
-                                            <a href="meeting-details.html">
-                                                <h4>Café Colombiano</h4>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 templatemo-item-col all soon">
-                                    <div class="meeting-item">
-                                        <div class="thumb">
-                                            <div class="price">
-                                                <span>$150.00</span>
-                                            </div>
-                                            <a href="meeting-details.html"><img src="assets/images/carousel/cafe-brasilero.jpg" alt=""></a>
-                                        </div>
-                                        <div class="down-content">
-                                            <a href="meeting-details.html">
-                                                <h4>Café Brasileño</h4>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 templatemo-item-col all att">
-                                    <div class="meeting-item">
-                                        <div class="thumb">
-                                            <div class="price">
-                                                <span>$150.00</span>
-                                            </div>
-                                            <a href="meeting-details.html"><img src="assets/images/carousel/cafe-cubano.jpg" alt=""></a>
-                                        </div>
-                                        <div class="down-content">
-                                            <a href="meeting-details.html">
-                                                <h4>Cafe Cubano</h4>
-                                            </a>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 templatemo-item-col all att">
-                                    <div class="meeting-item">
-                                        <div class="thumb">
-                                            <div class="price">
-                                                <span>$150.00</span>
-                                            </div>
-                                            <a href="meeting-details.html"><img src="assets/images/carousel/cafe-sueco.jpg" alt=""></a>
-                                        </div>
-                                        <div class="down-content">
-                                            <a href="meeting-details.html">
-                                                <h4>Café Sueco</h4>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 templatemo-item-col all imp">
-                                    <div class="meeting-item">
-                                        <div class="thumb">
-                                            <div class="price">
-                                                <span>$150.00</span>
-                                            </div>
-                                            <a href="meeting-details.html"><img src="assets/images/carousel/cafe-guatemalteco.jpg" alt=""></a>
-                                        </div>
-                                        <div class="down-content">
-                                            <a href="meeting-details.html">
-                                                <h4>Café Guatemalteco</h4>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
 
 
 
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="pagination">
-                                <ul>
-                                    <li><a href="#">1</a></li>
-                                    <li class="active"><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+
+            <div class="col-lg-12">
+                <div class="row grid">
+
+                    <?php
+                    item("Café Mexicano", "544.00", "./assets/images/carousel/cafe-mexicano.jpg");
+                    item("Café Mexicano", "544.00", "./assets/images/carousel/cafe-mexicano.jpg");
+                    item("Café Mexicano", "544.00", "./assets/images/carousel/cafe-mexicano.jpg");
+                    item("Café Mexicano", "544.00", "./assets/images/carousel/cafe-mexicano.jpg");
+                    item("Café Mexicano", "544.00", "./assets/images/carousel/cafe-mexicano.jpg");
+                    item("Café Mexicano", "544.00", "./assets/images/carousel/cafe-mexicano.jpg");
+                    ?>
+
                 </div>
             </div>
+            <div class="col-lg-12">
+                <div class="pagination">
+                    <ul>
+                        <li><a href="#">1</a></li>
+                        <li class="active"><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
         </div>
         <div class="footer">
             <p>Copyright © 2022
