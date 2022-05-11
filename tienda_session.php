@@ -103,14 +103,11 @@ require_once('./item.php');
                 <div class="row grid">
 
                     <?php
-                    item("Café Mexicano", "544.00", "./assets/images/carousel/cafe-mexicano.jpg");
-                    item("Café Mexicano", "544.00", "./assets/images/carousel/cafe-mexicano.jpg");
-                    item("Café Mexicano", "544.00", "./assets/images/carousel/cafe-mexicano.jpg");
-                    item("Café Mexicano", "544.00", "./assets/images/carousel/cafe-mexicano.jpg");
-                    item("Café Mexicano", "544.00", "./assets/images/carousel/cafe-mexicano.jpg");
-                    item("Café Mexicano", "544.00", "./assets/images/carousel/cafe-mexicano.jpg");
+                    getdata()
                     ?>
-
+           
+           
+      
                 </div>
             </div>
             <div class="col-lg-12">

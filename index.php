@@ -74,9 +74,9 @@
           // $query = pg_query($conn, "INSERT  INTO usuarios(nombre, apellido, email) VALUES ('nombretest','apellidotest','emailtest');");
           if ($query) {
             echo "
-        <div class='alert alert-success' role='alert'>
-        Se registro con éxito <br></div>
-      ";
+            <div class='alert alert-success' role='alert'>
+            Se registro con éxito <br></div>
+            ";
           }
         }
       }
