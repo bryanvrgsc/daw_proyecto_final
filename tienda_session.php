@@ -1,6 +1,11 @@
 <?php
-
+session_start();
+if (!isset($_SESSION['nombre_usuario'])) {
+    header("location: login_signin.php");
+}
 require_once('./item.php');
+
+
 
 ?>
 <!DOCTYPE html>
@@ -52,20 +57,47 @@ require_once('./item.php');
                             <li><a href="contacto.php">Contacto</a></li>
                             <li><a href="cerrar_session.php">Cerrar Sesión</a></li>
                             <li><a href="">Carrito</a></li>
+                            
                         </ul>
-
-
-
-
                     </nav>
-
                 </div>
             </div>
             <?php
 
-            session_start();
-            if (!isset($_SESSION['nombre_usuario'])) {
-                header("location: login_signin.php");
+            if (isset($_POST['agregar'])) {
+                $valor = $_POST['producto_id'];
+                // echo "
+                // <div class='alert alert-success' role='alert'>
+                //  Valor $valor <br></div>
+                // ";
+
+                if (isset($_SESSION['cart'])) {
+                    $item_array_id = array_column($_SESSION['cart'], "producto_id");
+
+
+                    if (in_array($valor, $item_array_id)) {
+                        echo "<script> alert('Product is already added in the cart..!') </script>";
+                        echo "<script>window.location = 'tienda_session.php'</script>";
+                    } else {
+                        $count = count($_SESSION['cart']);
+                        $item_array = array(
+                            'producto_id' => $_POST['producto_id']
+                        );
+
+                        $_SESSION['cart'][$count] = $item_array;
+                    }
+                } else {
+                    $item_array = array(
+                        'producto_id' => $_POST['producto_id']
+                    );
+                    echo "
+                    <div class='alert alert-success' role='alert'>
+                     Imprime <br></div>
+                    ";
+                    //SE CREA LA SESIÓN
+                    $_SESSION['cart'][0] = $item_array;
+                    print_r($_SESSION['cart']);
+                }
             }
 
             ?>
@@ -95,19 +127,13 @@ require_once('./item.php');
 
     <section class="meetings-page" id="meetings">
         <div class="container">
-
-
-
-
             <div class="col-lg-12">
                 <div class="row grid">
 
                     <?php
                     getdata()
                     ?>
-           
-           
-      
+
                 </div>
             </div>
             <div class="col-lg-12">

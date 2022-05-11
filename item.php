@@ -1,25 +1,24 @@
 <?php
 
-function item($producto_nombre, $producto_precio, $producto_imagen)
+function item($producto_nombre, $producto_precio, $producto_imagen, $producto_id)
 {
     $elemento = "
-    
+
     <div class='col-lg-4 templatemo-item-col all imp'>
     <div class='meeting-item'>
         <div class='thumb'>
             <div class='price'>
                 <span>$ $producto_precio </span>
             </div>
-            <a href='meeting-details.html'><img src='data:image/jpg;base64,$producto_imagen' alt='Red dot' />
-            
+            <img src='data:image/jpg;base64,$producto_imagen' alt='Red dot' />
         </div>
         <div class='down-content'>
-            <a href='meeting-details.html'>
-                <h4>$producto_nombre</h4>
-                
+            <h4>$producto_nombre</h4>
+            <form action='tienda_session.php' method='post'>
                 <button type='submit' class='btn btn-warning' name='agregar'> 🛒 Agregar al Carrito </button>
+                <input type='hidden' name='producto_id' value='$producto_id'>
+            </form>
             </a>
-            
         </div>
     </div>
 </div>
@@ -37,7 +36,6 @@ function getdata()
     $result = mysqli_query($con, $sql);
 
     while ($row = mysqli_fetch_array($result)) {
-        item($row['nombre'], $row['precio'], $row['imagen_principal']);
-        echo "<br>";
+        item($row['nombre'], $row['precio'], $row['imagen_principal'], $row['id_producto']);
     }
 }
