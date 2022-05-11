@@ -3,9 +3,21 @@ session_start();
 if (!isset($_SESSION['nombre_usuario'])) {
     header("location: login_signin.php");
 }
-require_once('./item.php');
 
+require_once("./item.php");
 
+if (isset($_GET['remove'])) {
+    print_r($_GET['id']);
+    // if ($_GET['action'] = 'remove') {
+    //     foreach ($_SESSION['cart'] as $key => $value) {
+    //         if ($value['product_id'] == $_GET['id']) {
+    //             unset($_SESSION['cart'][$key]);
+    //             echo "<script>alert('El producto ha sido eliminado')</script>;";
+    //             echo "<script>window.location='cart.php'</script>";
+    //         }
+    //     }
+    // }
+}
 
 ?>
 <!DOCTYPE html>
@@ -19,7 +31,7 @@ require_once('./item.php');
     <meta name="author" content="TemplateMo">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
-    <title>Café Nook - Tienda</title>
+    <title>Café Nook - Carrito</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -53,11 +65,11 @@ require_once('./item.php');
 
                         <ul class="nav">
                             <li><a href="index.php">Home</a></li>
-                            <li class="scroll-to-section"><a href="#top" class="active">Tienda</a></li>
+                            <li class="scroll-to-section"><a href="#top">Tienda</a></li>
                             <li><a href="contacto.php">Contacto</a></li>
                             <li><a href="cerrar_session.php">Cerrar Sesión</a></li>
                             <li>
-                                <a href="carrito.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito
+                                <a href="carrito.php" class="active"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito
                                     <!-- <span id="cart_count" class="text-warning bg-light">0</span> -->
                                     <?php
                                     if (isset($_SESSION['cart'])) {
@@ -73,45 +85,6 @@ require_once('./item.php');
                     </nav>
                 </div>
             </div>
-            <?php
-
-            if (isset($_POST['agregar'])) {
-                $valor = $_POST['producto_id'];
-                // echo "
-                // <div class='alert alert-success' role='alert'>
-                //  Valor $valor <br></div>
-                // ";
-
-                if (isset($_SESSION['cart'])) {
-                    $item_array_id = array_column($_SESSION['cart'], "producto_id");
-
-
-                    if (in_array($valor, $item_array_id)) {
-                        echo "<script> alert('Product is already added in the cart..!') </script>";
-                        echo "<script>window.location = 'tienda_session.php'</script>";
-                    } else {
-                        $count = count($_SESSION['cart']);
-                        $item_array = array(
-                            'producto_id' => $_POST['producto_id']
-                        );
-
-                        $_SESSION['cart'][$count] = $item_array;
-                    }
-                } else {
-                    $item_array = array(
-                        'producto_id' => $_POST['producto_id']
-                    );
-                    echo "
-                    <div class='alert alert-success' role='alert'>
-                     Imprime <br></div>
-                    ";
-                    //SE CREA LA SESIÓN
-                    $_SESSION['cart'][0] = $item_array;
-                    print_r($_SESSION['cart']);
-                }
-            }
-
-            ?>
         </div>
     </header>
 
@@ -125,9 +98,9 @@ require_once('./item.php');
                     <span style="height: 155px; display: block;"></span>
                     <div class="col-lg-12">
                         <div class="caption">
-                            <h2>Tienda</h2>
+                            <h2>Carrito</h2>
                             <div class="main-button-red">
-                                <div class="scroll-to-section"><a href="#contact">Conoce nuestros productos</a></div>
+                                <div class="scroll-to-section"><a href="#meetings-page"></a></div>
                             </div>
                         </div>
                     </div>
@@ -138,29 +111,66 @@ require_once('./item.php');
 
     <section class="meetings-page" id="meetings">
         <div class="container">
-            <div class="col-lg-12">
-                <div class="row grid">
+            <div class="row grid">
+                <div class="col-lg-7">
+                    <div class="shoppin-cart">
 
-                    <?php
-                    getdata()
-                    ?>
+                        <?php
+                        $con = mysqli_connect("localhost", "a00348428", "p0348428_Rockeilo", "cafe");
+                        $sql = "SELECT * FROM producto;";
+
+                        $result = mysqli_query($con, $sql);
+
+                        $total = 0;
+                        if (isset($_SESSION['cart'])) {
+                            $product_id = array_column($_SESSION['cart'], 'producto_id');
+
+
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                foreach ($product_id as $id) {
+                                    if ($row['id_producto'] == $id) {
+                                        carrito($row['nombre'], $row['precio'], $row['imagen_principal'], $row['id_producto']);
+                                        $total = $total + (int)$row['precio'];
+                                    }
+                                }
+                            }
+                        } else {
+                            echo "<h5> El carrito está vacío</h5>";
+                        }
+                        ?>
+
+                    </div>
 
                 </div>
-            </div>
-            <div class="col-lg-12">
-                <div class="pagination">
-                    <ul>
-                        <li><a href="#">1</a></li>
-                        <li class="active"><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                    </ul>
+                <div class="col-md-4 offset-md-1 border rounded mt-5 bg-white h-25">
+                    <div class="pt-4">
+                        <h6>DETALLES DE COMPRA</h6>
+                        <hr>
+                        <div class="col-md-6">
+                            <?php
+
+                            if (isset($_SESSION['cart'])) {
+                                count($_SESSION['cart']);
+                                echo "<h6> Price ($count items)</h6>";
+                            } else {
+                                echo "<h6> Price (0 items)</h6>";
+                            }
+                            ?>
+                            <h6>Monto a Pagar</h6>
+                            <div class="col-md-6">
+                                <h6>$
+                                    <?php
+                                    echo $total;
+                                    ?>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
-        </div>
-        </div>
+
+
         <div class="footer">
             <p>Copyright © 2022
                 <br>
