@@ -72,11 +72,27 @@ if (isset($_GET['remove'])) {
                                 <a href="carrito.php" class="active"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito
                                     <!-- <span id="cart_count" class="text-warning bg-light">0</span> -->
                                     <?php
-                                    if (isset($_SESSION['cart'])) {
-                                        $count = count($_SESSION['cart']);
-                                        echo "<span class='badge bg-primary rounded-pill'>$count</span>";
-                                    } else {
-                                        echo "<span class='badge bg-primary rounded-pill'>0</span>";
+                                    // if (isset($_SESSION['cart'])) {
+                                    //     $count = count($_SESSION['cart']);
+                                    //     echo "<span class='badge bg-primary rounded-pill'>$count</span>";
+                                    // } else {
+                                    //     echo "<span class='badge bg-primary rounded-pill'>0</span>";
+                                    // }
+                                    // ! CUENTA EL NUMERO DE ITEMS DE CARRITO
+                                    if (isset($_SESSION['nombre_usuario'])) {
+                                        // $count = count($_SESSION['cart']);
+
+                                        $con = mysqli_connect("localhost", "a00348428", "p0348428_Rockeilo", "cafe");
+                                        if (isset($_SESSION['nombre_usuario'])) {
+                                            $usuario = $_SESSION['nombre_usuario'];
+                                            $verifica = mysqli_query($con, "SELECT cantidad FROM carrito WHERE id_usuario= '$usuario'");
+                                            $existe = mysqli_num_rows($verifica);
+                                            $count = 0;
+                                            while ($row = mysqli_fetch_array($verifica)) {
+                                                $count = $count + (int)$row['cantidad'];
+                                            }
+                                            echo "<span class='badge bg-primary rounded-pill'>$count</span>";
+                                        }
                                     }
                                     ?>
                                 </a>
@@ -116,26 +132,42 @@ if (isset($_GET['remove'])) {
                     <div class="shoppin-cart">
 
                         <?php
-                        $con = mysqli_connect("localhost", "a00348428", "p0348428_Rockeilo", "cafe");
-                        $sql = "SELECT * FROM producto;";
+                        // ! SESSIONS
+                        // $con = mysqli_connect("localhost", "a00348428", "p0348428_Rockeilo", "cafe");
+                        // $sql = "SELECT * FROM producto;";
 
-                        $result = mysqli_query($con, $sql);
+                        // $result = mysqli_query($con, $sql);
 
-                        $total = 0;
-                        if (isset($_SESSION['cart'])) {
-                            $product_id = array_column($_SESSION['cart'], 'producto_id');
+                        // $total = 0;
+                        // if (isset($_SESSION['cart'])) {
+                        //     $product_id = array_column($_SESSION['cart'], 'producto_id');
 
 
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                foreach ($product_id as $id) {
-                                    if ($row['id_producto'] == $id) {
-                                        carrito($row['nombre'], $row['precio'], $row['imagen_principal'], $row['id_producto']);
-                                        $total = $total + (int)$row['precio'];
-                                    }
-                                }
+                        //     while ($row = mysqli_fetch_assoc($result)) {
+                        //         foreach ($product_id as $id) {
+                        //             if ($row['id_producto'] == $id) {
+                        //                 carrito($row['nombre'], $row['precio'], $row['imagen_principal'], $row['id_producto']);
+                        //                 $total = $total + (int)$row['precio'];
+                        //             }
+                        //         }
+                        //     }
+                        // } else {
+                        //     echo "<h5> El carrito está vacío</h5>";
+                        // }
+                        // ! MUESTRA LOS PRODUCTOS AGREGADOS AL CARRITO
+                        if (isset($_SESSION['nombre_usuario'])) {
+                            $con = mysqli_connect("localhost", "a00348428", "p0348428_Rockeilo", "cafe");
+                            $usuario = $_SESSION['nombre_usuario'];
+                            $verifica = mysqli_query($con, "SELECT producto.nombre, producto.precio, producto.imagen_principal, producto.precio, producto.id_producto, carrito.cantidad FROM carrito INNER JOIN producto ON carrito.id_producto = producto.id_producto WHERE id_usuario= '$usuario'");
+                            $existe = mysqli_num_rows($verifica);
+                            $total = 0;
+                            while ($row = mysqli_fetch_assoc($verifica)) {
+                                carrito($row['nombre'], $row['precio'], $row['imagen_principal'], $row['id_producto'], $row['cantidad']);
+                                $total = $total + ((int)$row['cantidad'] * (int)$row['precio']);
                             }
-                        } else {
-                            echo "<h5> El carrito está vacío</h5>";
+                            if ($total == 0) {
+                                echo "<h6>No hay productos en el carrito </h6>";
+                            }
                         }
                         ?>
 
@@ -148,18 +180,35 @@ if (isset($_GET['remove'])) {
                         <hr>
                         <div class="col-md-6">
                             <?php
+                            // ! SESSION 
+                            // if (isset($_SESSION['cart'])) {
+                            //     count($_SESSION['cart']);
+                            //     echo "<h6> Price ($count items)</h6> <br>";
+                            // } else {
+                            //     echo "<h6> Price (0 items)</h6> <br>";
+                            // }
 
-                            if (isset($_SESSION['cart'])) {
-                                count($_SESSION['cart']);
-                                echo "<h6> Price ($count items)</h6> <br>";
-                            } else {
-                                echo "<h6> Price (0 items)</h6> <br>";
+                            // ! CUENTA EL NUMERO DE ITEMS DE CARRITO
+                            if (isset($_SESSION['nombre_usuario'])) {
+                                // $count = count($_SESSION['cart']);
+
+                                $con = mysqli_connect("localhost", "a00348428", "p0348428_Rockeilo", "cafe");
+
+                                $usuario = $_SESSION['nombre_usuario'];
+                                $verifica = mysqli_query($con, "SELECT cantidad FROM carrito WHERE id_usuario= '$usuario'");
+                                $existe = mysqli_num_rows($verifica);
+                                $count = 0;
+                                while ($row = mysqli_fetch_array($verifica)) {
+                                    $count = $count + (int)$row['cantidad'];
+                                }
+                                echo "<h6> Número de items ($count total)</h6> <br>";
                             }
                             ?>
                             <h6>Monto a Pagar</h6>
                             <div class="col-md-6">
                                 <h6>$
                                     <?php
+                                    // ! SESSIONS
                                     echo $total;
                                     ?>
                                 </h6>

@@ -40,7 +40,7 @@ function getdata()
     }
 }
 
-function carrito($producto_nombre, $producto_precio, $producto_imagen, $producto_id)
+function carrito($producto_nombre, $producto_precio, $producto_imagen, $producto_id, $cantidad)
 {
     $carrito = "
     
@@ -55,13 +55,13 @@ function carrito($producto_nombre, $producto_precio, $producto_imagen, $producto
                     <br>
                     <h5 class='pt-2'>$$producto_precio</h5>
                     <br>
-                    <button type='submit' class='btn btn-warning'>Guardar para despues</button>
-                    <button type='submit' class='btn btn-danger mx-2' name='remove'>Remover</button>
+                    <!-- <button type='submit' class='btn btn-warning'>Guardar para despues</button> -->
+                    <button type='submit' class='btn btn-danger mx-2' name='remove'>Eliminar</button>
                 </div>
                 <div class='col-md-3 py-5'>
                     <div>
                         <button type='button' class='btn bg-light border rounded-circle'> <i class='fa fa-plus' aria-hidden='true'></i> </button>
-                        <input type='text' value='1' class='form-control w-25'>
+                        <input type='text' value='$cantidad' class='form-control w-25'>
                         <button type='button' class='btn bg-light border rounded-circle'> <i class='fa fa-minus' aria-hidden='true'></i> </button>
                     </div>
                 </div>

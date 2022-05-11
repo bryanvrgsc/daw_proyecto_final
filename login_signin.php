@@ -113,7 +113,7 @@
                         // $numErr = "Ingrese el password";
                     } else {
                         mysqli_query($con, "INSERT INTO usuario (id_usuario, nombre, email, password, fecha_nacimiento, datos_bancarios)
-                        VALUES ('$string', '$nombre', '$email', '$password','2006-07-04','099878877123123');");
+                        VALUES ('$string', '$nombre', '$email', '$password','0000-00-00','01234567890');");
                         echo "
                          <div class='alert alert-success' role='alert'>
                          Se registro con éxito <br></div>
@@ -132,12 +132,16 @@
                         // $numErr = "Ingrese el password";
                     } else {
                         $query = mysqli_query($con, "SELECT * FROM usuario WHERE email = '$logemail' AND password = '$logpassword'");
+
+                        while ($row = mysqli_fetch_array($query)) {
+                            $id = $row['id_usuario'];
+                        }
                         // $numErr = "DATOS GUARDADOS EXITOSAMENTE *";
                         $nr = mysqli_num_rows($query);
 
                         // if ($logemail == "bryanvrgsc@gmail.com") {
                         if ($nr == 1) {
-                            $_SESSION['nombre_usuario'] = $logemail;
+                            $_SESSION['nombre_usuario'] = $id;
 
                             header("location: tienda_session.php");
                             mysqli_close($con);
