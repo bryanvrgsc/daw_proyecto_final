@@ -132,28 +132,7 @@ if (isset($_GET['remove'])) {
                     <div class="shoppin-cart">
 
                         <?php
-                        // ! SESSIONS
-                        // $con = mysqli_connect("localhost", "a00348428", "p0348428_Rockeilo", "cafe");
-                        // $sql = "SELECT * FROM producto;";
-
-                        // $result = mysqli_query($con, $sql);
-
-                        // $total = 0;
-                        // if (isset($_SESSION['cart'])) {
-                        //     $product_id = array_column($_SESSION['cart'], 'producto_id');
-
-
-                        //     while ($row = mysqli_fetch_assoc($result)) {
-                        //         foreach ($product_id as $id) {
-                        //             if ($row['id_producto'] == $id) {
-                        //                 carrito($row['nombre'], $row['precio'], $row['imagen_principal'], $row['id_producto']);
-                        //                 $total = $total + (int)$row['precio'];
-                        //             }
-                        //         }
-                        //     }
-                        // } else {
-                        //     echo "<h5> El carrito está vacío</h5>";
-                        // }
+                        
                         // ! MUESTRA LOS PRODUCTOS AGREGADOS AL CARRITO
                         if (isset($_SESSION['nombre_usuario'])) {
                             $con = mysqli_connect("localhost", "a00348428", "p0348428_Rockeilo", "cafe");

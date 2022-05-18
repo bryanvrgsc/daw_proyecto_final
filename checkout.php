@@ -5,7 +5,6 @@ if (!isset($_SESSION['nombre_usuario'])) {
     header("location: login_signin.php");
 }
 require_once('./item.php');
-header("Refresh:0");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -51,13 +50,13 @@ header("Refresh:0");
                         </button>
 
                         <ul class="nav">
-                            <li><a href="index.php">Home</a></li>
-                            <li class="scroll-to-section"><a href="#top" class="active">Tienda</a></li>
+                            <li><a href="index_session.php">Home</a></li>
+                            <li class="scroll-to-section"><a>Tienda</a></li>
 
                             <li><a href="cuenta.php">Cuenta</a></li>
                             <li><a href="cerrar_session.php">Cerrar Sesión</a></li>
                             <li>
-                                <a href="carrito.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito
+                                <a href="#top" class="active""><i class=" fa fa-shopping-cart" aria-hidden="true"></i> Carrito
                                     <!-- <span id="cart_count" class="text-warning bg-light">0</span> -->
                                     <?php
                                     // ! CUENTA EL NUMERO DE ITEMS DE CARRITO
@@ -83,89 +82,7 @@ header("Refresh:0");
                     </nav>
                 </div>
             </div>
-            <?php
 
-            if (isset($_POST['agregar'])) {
-                $valor = $_POST['producto_id'];
-                // echo "
-                // <div class='alert alert-success' role='alert'>
-                //  Valor $valor <br></div>
-                // ";
-                // !SESSION
-                // if (isset($_SESSION['cart'])) {
-
-                //     $item_array_id = array_column($_SESSION['cart'], "producto_id");
-
-
-                //     if (in_array($valor, $item_array_id)) {
-                //         echo "<script> alert('Product is already added in the cart..!') </script>";
-                //         echo "<script>window.location = 'tienda_session.php'</script>";
-                //     } else {
-                //         $count = count($_SESSION['cart']);
-                //         $item_array = array(
-                //             'producto_id' => $_POST['producto_id']
-                //         );
-
-                //         $_SESSION['cart'][$count] = $item_array;
-                //     }
-                // } else {
-                // $item_array = array(
-                //     'producto_id' => $_POST['producto_id']
-                // );
-
-                echo "
-                    <div class='alert alert-success' role='alert'>
-                    Se agrego el producto<br></div>
-                    ";
-
-                // ! SE CREA LA SESIÓN
-                // $_SESSION['cart'][0] = $item_array;
-                $con = mysqli_connect("localhost", "a00348428", "p0348428_Rockeilo", "cafe");
-                if (isset($_SESSION['nombre_usuario'])) {
-                    $usuario = $_SESSION['nombre_usuario'];
-                    $verifica = mysqli_query($con, "SELECT * FROM carrito WHERE id_usuario = '$usuario' AND id_producto = '$valor' ");
-                    $numberrows = mysqli_num_rows($verifica);
-                    if ($numberrows != 0) {
-
-                        while ($row = mysqli_fetch_array($verifica)) {
-                            $avalor = $row['cantidad'];
-                        }
-                        // echo "
-                        //     <div class='alert alert-danger' role='alert'>
-                        //     Existen datos, se aumenta el valor $avalor <br></div>
-                        //     ";
-                        $nvalor = $avalor + 1;
-                        $agrega = mysqli_query($con, "UPDATE carrito SET cantidad = '$nvalor' WHERE id_usuario = '$usuario' AND id_producto = '$valor'");
-
-                        // $existe = mysqli_num_rows($verifica);
-
-                        while ($row = mysqli_fetch_array($verifica)) {
-                            $count = $count + (int)$row['cantidad'];
-                        }
-                    } else {
-                        $fecha = new DateTime();
-                        $id_carrito = date_timestamp_get($fecha);
-                        $inserta = mysqli_query($con, "INSERT INTO carrito (id_carrito, id_producto, id_usuario, cantidad) VALUES ('$id_carrito','$valor','$usuario','1')");
-                        // echo "
-                        //     <div class='alert alert-danger' role='alert'>
-                        //     No existen datos, se agrego valor al carrito <br></div>
-                        //     ";
-                    }
-                    // $query = mysqli_query($con, "SELECT * FROM carrito WHERE usuario = '$usuario'");
-                    // $nr = mysqli_num_rows($query);
-                    // ! SINO EXISTE NADA EN EL CARRITO
-                    // if ($nr != 0) {
-                    //     $fecha = new DateTime();
-                    //     $string = date_timestamp_get($fecha);
-                    //     mysqli_query($con, "INSERT INTO carrito (id_carrito, id_producto, id_usuario, cantidad)
-                    //     VALUES ('$string', '$valor', '$usuario', '1');");
-                    // }
-                }
-                // print_r($_SESSION['cart']);
-
-            }
-            // }
-            ?>
         </div>
     </header>
 
@@ -179,9 +96,9 @@ header("Refresh:0");
                     <span style="height: 155px; display: block;"></span>
                     <div class="col-lg-12">
                         <div class="caption">
-                            <h2>Tienda</h2>
+                            <h2>Checkout</h2>
                             <div class="main-button-red">
-                                <div class="scroll-to-section"><a href="#contact">Conoce nuestros productos</a></div>
+                                <div class="scroll-to-section"><a href="#contact"> <br> </a></div>
                             </div>
                         </div>
                     </div>
@@ -192,29 +109,74 @@ header("Refresh:0");
 
     <section class="meetings-page" id="meetings">
         <div class="container">
-            <div class="col-lg-12">
-                <div class="row grid">
+            <div class="row grid">
+                <div class="col-lg-7">
+                    <div class="shoppin-cart">
 
-                    <?php
-                    getdata()
-                    ?>
+                        <?php
 
+                        // ! MUESTRA LOS PRODUCTOS AGREGADOS AL CARRITO
+                        if (isset($_SESSION['nombre_usuario'])) {
+                            $con = mysqli_connect("localhost", "a00348428", "p0348428_Rockeilo", "cafe");
+                            $usuario = $_SESSION['nombre_usuario'];
+                            $verifica = mysqli_query($con, "SELECT producto.nombre, producto.precio, producto.imagen_principal, producto.precio, producto.id_producto, carrito.cantidad FROM carrito INNER JOIN producto ON carrito.id_producto = producto.id_producto WHERE id_usuario= '$usuario'");
+                            $existe = mysqli_num_rows($verifica);
+                            $total = 0;
+                            while ($row = mysqli_fetch_assoc($verifica)) {
+                                listacarrito($row['nombre'], $row['precio'], $row['imagen_principal'], $row['id_producto'], $row['cantidad']);
+                                $total = $total + ((int)$row['cantidad'] * (int)$row['precio']);
+                            }
+                            if ($total == 0) {
+                                header("location: carrito.php");
+                            } else {
+                                echo "<form action='finalizacion.php' method='post'>
+                                <button type='submit' class='btn btn-success mx-2' name='vaciar'>Confirmar pedido</button>                            
+
+                                </form>";
+                            }
+                        }
+                        ?>
+                    </div>
+                </div>
+                <div class="col-md-4 offset-md-1 border rounded mt-5 bg-white h-25">
+                    <div class="pt-4">
+                        <h6>DETALLES DE COMPRA</h6>
+                        <hr>
+                        <div class="col-md-6">
+                            <?php
+
+                            // ! CUENTA EL NUMERO DE ITEMS DE CARRITO
+                            if (isset($_SESSION['nombre_usuario'])) {
+                                // $count = count($_SESSION['cart']);
+
+                                $con = mysqli_connect("localhost", "a00348428", "p0348428_Rockeilo", "cafe");
+
+                                $usuario = $_SESSION['nombre_usuario'];
+                                $verifica = mysqli_query($con, "SELECT cantidad FROM carrito WHERE id_usuario= '$usuario'");
+                                $existe = mysqli_num_rows($verifica);
+                                $count = 0;
+                                while ($row = mysqli_fetch_array($verifica)) {
+                                    $count = $count + (int)$row['cantidad'];
+                                }
+                                echo "<h6> Número de items ($count total)</h6> <br>";
+                            }
+                            ?>
+                            <h6>Monto a Pagar</h6>
+                            <div class="col-md-6">
+                                <h6>$
+                                    <?php
+                                    // ! SESSIONS
+                                    echo $total;
+                                    ?>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-12">
-                <div class="pagination">
-                    <ul>
-                        <li><a href="#">1</a></li>
-                        <li class="active"><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                    </ul>
-                </div>
-            </div>
         </div>
-        </div>
-        </div>
-        </div>
+
+
         <div class="footer">
             <p>Copyright © 2022
                 <br>

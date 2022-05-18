@@ -96,3 +96,35 @@ function carrito($producto_nombre, $producto_precio, $producto_imagen, $producto
 
     echo $carrito;
 }
+
+function listacarrito($producto_nombre, $producto_precio, $producto_imagen, $producto_id, $cantidad)
+{
+
+    $listacarrito = "
+
+    <div class='p-3 mb-2 bg-white text-dark'>
+        <div class='container'>
+        <div class='row'>
+        <div class='col-2'>
+            <img src='data:image/jpg;base64,$producto_imagen' alt='$producto_nombre' />
+        </div>
+        <div class='col'>
+        <div class='fw-bold'>$producto_nombre</div>
+        <div class='fw-bold'>$$producto_precio</div>
+        </div>
+        <div class='col'>
+            <span class='badge bg-primary rounded-pill'>$cantidad</span>
+        </div>
+        </div>
+        </div> 
+    </div>   
+
+        
+
+        
+    
+
+    ";
+
+    echo $listacarrito;
+}
