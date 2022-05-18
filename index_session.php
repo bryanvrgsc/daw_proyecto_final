@@ -53,7 +53,7 @@ require_once('./item.php');
 
                         <ul class="nav">
                             <li class="scroll-to-section"><a href="#top" class="active"">Home</a></li>
-                            <li><a href="tienda_session.php">Tienda</a></li>
+                            <li><a href=" tienda_session.php">Tienda</a></li>
                             <li><a href="cuenta.php">Cuenta</a></li>
                             <li><a href="cerrar_session.php">Cerrar Sesión</a></li>
                             <li>

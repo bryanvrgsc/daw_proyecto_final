@@ -911,7 +911,8 @@ upcoming meetings
 */
 
 section.upcoming-meetings {
-  background-image: url(../images/meetings-bg.jpg);
+  /* background-image: url(../images/meetings-bg.jpg); */
+  background-color:burlywood;
   background-position: center center;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -1045,13 +1046,25 @@ apply now
 ---------------------------------------------
 */
 
+/*
+---------------------------------------------
+apply now
+---------------------------------------------
+*/
+
 section.apply-now {
-  background-image: url(../images/apply-bg.jpg);
+  background-color: gray;
+  /* background-image: url(../images/apply-bg.jpg); */
   background-position: center center;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 140px 0px;
+  
+  
+  position: relative;
+  /* padding: 140px 0px; */
+  padding-top: 140px;
+  padding-bottom: 250px;
 }
 
 section.apply-now .item {
@@ -1278,7 +1291,7 @@ our facts
 */
 
 section.our-facts {
-  background-image: url(../images/facts-bg.jpg);
+  background-image: url(../images/meetings-bg.jpg);
   background-position: center center;
   background-attachment: fixed;
   background-repeat: no-repeat;
