@@ -119,11 +119,6 @@ function listacarrito($producto_nombre, $producto_precio, $producto_imagen, $pro
         </div> 
     </div>   
 
-        
-
-        
-    
-
     ";
 
     echo $listacarrito;

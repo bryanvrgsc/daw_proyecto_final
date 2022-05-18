@@ -106,7 +106,6 @@ require_once('./item.php');
     <!-- ***** Main Banner Area Start ***** -->
 
     <section class="heading-page header-text" id="top">
-
         <div class="video-overlay2 header-text">
             <div class="container">
                 <div class="row">
@@ -123,6 +122,8 @@ require_once('./item.php');
             </div>
         </div>
     </section>
+
+
 
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->

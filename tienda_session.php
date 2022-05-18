@@ -116,6 +116,7 @@ require_once('./item.php');
                         $id_carrito = date_timestamp_get($fecha);
                         $inserta = mysqli_query($con, "INSERT INTO carrito (id_carrito, id_producto, id_usuario, cantidad) VALUES ('$id_carrito','$valor','$usuario','1')");
                     }
+                    echo "<meta http-equiv='refresh' content='1'>";
                 }
             }
 

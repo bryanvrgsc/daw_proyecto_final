@@ -8,15 +8,6 @@ require_once("./item.php");
 
 if (isset($_GET['remove'])) {
     print_r($_GET['id']);
-    // if ($_GET['action'] = 'remove') {
-    //     foreach ($_SESSION['cart'] as $key => $value) {
-    //         if ($value['product_id'] == $_GET['id']) {
-    //             unset($_SESSION['cart'][$key]);
-    //             echo "<script>alert('El producto ha sido eliminado')</script>;";
-    //             echo "<script>window.location='cart.php'</script>";
-    //         }
-    //     }
-    // }
 }
 
 ?>
@@ -71,12 +62,7 @@ if (isset($_GET['remove'])) {
                                 <a href="carrito.php" class="active"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito
                                     <!-- <span id="cart_count" class="text-warning bg-light">0</span> -->
                                     <?php
-                                    // if (isset($_SESSION['cart'])) {
-                                    //     $count = count($_SESSION['cart']);
-                                    //     echo "<span class='badge bg-primary rounded-pill'>$count</span>";
-                                    // } else {
-                                    //     echo "<span class='badge bg-primary rounded-pill'>0</span>";
-                                    // }
+
                                     // ! CUENTA EL NUMERO DE ITEMS DE CARRITO
                                     if (isset($_SESSION['nombre_usuario'])) {
                                         // $count = count($_SESSION['cart']);
@@ -132,12 +118,14 @@ if (isset($_GET['remove'])) {
                     <div class="shoppin-cart">
 
                         <?php
-                        
+
                         // ! MUESTRA LOS PRODUCTOS AGREGADOS AL CARRITO
                         if (isset($_SESSION['nombre_usuario'])) {
                             $con = mysqli_connect("localhost", "a00348428", "p0348428_Rockeilo", "cafe");
                             $usuario = $_SESSION['nombre_usuario'];
-                            $verifica = mysqli_query($con, "SELECT producto.nombre, producto.precio, producto.imagen_principal, producto.precio, producto.id_producto, carrito.cantidad FROM carrito INNER JOIN producto ON carrito.id_producto = producto.id_producto WHERE id_usuario= '$usuario'");
+                            $verifica = mysqli_query($con, "SELECT producto.nombre, producto.precio, producto.imagen_principal, producto.precio, producto.id_producto, carrito.cantidad 
+                            FROM carrito 
+                            INNER JOIN producto ON carrito.id_producto = producto.id_producto WHERE id_usuario= '$usuario'");
                             $existe = mysqli_num_rows($verifica);
                             $total = 0;
                             while ($row = mysqli_fetch_assoc($verifica)) {
@@ -147,14 +135,17 @@ if (isset($_GET['remove'])) {
                             if ($total == 0) {
                                 echo "<h6>No hay productos en el carrito </h6>";
                             } else {
+                                echo "<div class='container'>
+                                <div class='row'>
+                                  <div class='col'>";
                                 echo "<form action='carrito.php' method='post'>
                                 <button type='submit' class='btn btn-danger mx-2' name='vaciar'>Vaciar carrito</button>
                                 </form>";
+                                echo "</div> <div class='col'>";
                                 echo "<form action='checkout.php' method='post'>
-                                <button type='submit' class='btn btn-success mx-2' name='vaciar'>Proceder al pago</button>
-                                
-
+                                <button type='submit' class='btn btn-success mx-2' name='vaciar'>Proceder al pago</button>                                  
                                 </form>";
+                                echo "</div> </div> </div>";
                             }
 
                             // ! BOTONES PARA AUMENTAR
@@ -211,13 +202,6 @@ if (isset($_GET['remove'])) {
                         <hr>
                         <div class="col-md-6">
                             <?php
-                            // ! SESSION 
-                            // if (isset($_SESSION['cart'])) {
-                            //     count($_SESSION['cart']);
-                            //     echo "<h6> Price ($count items)</h6> <br>";
-                            // } else {
-                            //     echo "<h6> Price (0 items)</h6> <br>";
-                            // }
 
                             // ! CUENTA EL NUMERO DE ITEMS DE CARRITO
                             if (isset($_SESSION['nombre_usuario'])) {

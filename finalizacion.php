@@ -4,7 +4,12 @@ session_start();
 if (!isset($_SESSION['nombre_usuario'])) {
     header("location: login_signin.php");
 }
-require_once('./item.php');
+require_once("./item.php");
+
+if (isset($_GET['remove'])) {
+    print_r($_GET['id']);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -17,11 +22,10 @@ require_once('./item.php');
     <meta name="author" content="TemplateMo">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
-    <title>Café Nook - Tienda</title>
+    <title>Café Nook - Carrito</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
 
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="assets/css/fontawesome.css">
@@ -52,13 +56,13 @@ require_once('./item.php');
                         <ul class="nav">
                             <li><a href="index_session.php">Home</a></li>
                             <li><a href="tienda_session.php">Tienda</a></li>
-
                             <li><a href="cuenta.php">Cuenta</a></li>
                             <li><a href="cerrar_session.php">Cerrar Sesión</a></li>
                             <li>
-                                <a href="#top" class="active""><i class=" fa fa-shopping-cart" aria-hidden="true"></i> Carrito
-                                    <!-- <span id="cart_count" class="text-warning bg-light">0</span> -->
+                                <a href="carrito.php" class="active"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito
+
                                     <?php
+
                                     // ! CUENTA EL NUMERO DE ITEMS DE CARRITO
                                     if (isset($_SESSION['nombre_usuario'])) {
                                         // $count = count($_SESSION['cart']);
@@ -75,6 +79,7 @@ require_once('./item.php');
                                             echo "<span class='badge bg-primary rounded-pill'>$count</span>";
                                         }
                                     }
+
                                     ?>
                                 </a>
                             </li>
@@ -82,7 +87,6 @@ require_once('./item.php');
                     </nav>
                 </div>
             </div>
-
         </div>
     </header>
 
@@ -90,15 +94,15 @@ require_once('./item.php');
 
     <section class="heading-page header-text" id="top">
 
-        <div class="video-overlay2 header-text">
+        <div class="video-overlay3 header-text">
             <div class="container">
                 <div class="row">
                     <span style="height: 155px; display: block;"></span>
                     <div class="col-lg-12">
                         <div class="caption">
-                            <h2>Checkout</h2>
+                            <h2>Finalización</h2>
                             <div class="main-button-red">
-                                <div class="scroll-to-section"><a href="#contact"> <br> </a></div>
+                                <div class="scroll-to-section"><a href="#meetings-page"></a></div>
                             </div>
                         </div>
                     </div>
@@ -122,65 +126,38 @@ require_once('./item.php');
                             $verifica = mysqli_query($con, "SELECT producto.nombre, producto.precio, producto.imagen_principal, producto.precio, producto.id_producto, carrito.cantidad FROM carrito INNER JOIN producto ON carrito.id_producto = producto.id_producto WHERE id_usuario= '$usuario'");
                             $existe = mysqli_num_rows($verifica);
                             $total = 0;
-                            while ($row = mysqli_fetch_assoc($verifica)) {
-                                listacarrito($row['nombre'], $row['precio'], $row['imagen_principal'], $row['id_producto'], $row['cantidad']);
-                                $total = $total + ((int)$row['cantidad'] * (int)$row['precio']);
-                            }
-                            if ($total == 0) {
+
+                            if ($total != 0) {
                                 header("location: carrito.php");
                             } else {
-                                echo "<div class='container'>
-                                <div class='row'>
-                                  <div class='col'>";
-                                echo "<form action='carrito.php' method='post'>
-                                  <button type='submit' class='btn btn-warning mx-2'>Editar pedido</button>                            
-                                  </form>";
-                                echo "</div> <div class='col'>";
-                                echo "<form action='finalizacion.php' method='post'>
-                                <button type='submit' class='btn btn-success mx-2'>Confirmar pedido</button>                            
-                                </form>";
+                                $compra = new DateTime();
 
-                                echo "</div> </div> </div>";
-                            }
-                        }
-                        ?>
-                    </div>
-                </div>
-                <div class="col-md-4 offset-md-1 border rounded mt-5 bg-white h-25">
-                    <div class="pt-4">
-                        <h6>DETALLES DE COMPRA</h6>
-                        <hr>
-                        <div class="col-md-6">
-                            <?php
-
-                            // ! CUENTA EL NUMERO DE ITEMS DE CARRITO
-                            if (isset($_SESSION['nombre_usuario'])) {
-                                // $count = count($_SESSION['cart']);
-
+                                echo "                            
+                                    <div class='pt-2'>
+                                    <h1 style='color:white;'>Finalizo compra</h1>
+                                    </div>                                                                        
+                                ";
                                 $con = mysqli_connect("localhost", "a00348428", "p0348428_Rockeilo", "cafe");
 
                                 $usuario = $_SESSION['nombre_usuario'];
-                                $verifica = mysqli_query($con, "SELECT cantidad FROM carrito WHERE id_usuario= '$usuario'");
-                                $existe = mysqli_num_rows($verifica);
-                                $count = 0;
-                                while ($row = mysqli_fetch_array($verifica)) {
-                                    $count = $count + (int)$row['cantidad'];
-                                }
-                                echo "<h6> Número de items ($count total)</h6> <br>";
+
+                                // $fechacompra = date_timestamp_get($compra);
+
+                                mysqli_query($con, "INSERT INTO ordenes (id_compra, id_producto, id_usuario, fecha_compra, cantidad)
+                                    SELECT carrito.id_carrito, producto.id_producto, '$usuario', NOW(), carrito.cantidad
+                                    FROM carrito
+                                    INNER JOIN producto ON carrito.id_producto = producto.id_producto WHERE id_usuario= '$usuario'");
+
+
+                                $actualizar = mysqli_query($con, "DELETE FROM carrito WHERE id_usuario = '$usuario'");
                             }
-                            ?>
-                            <h6>Monto a Pagar</h6>
-                            <div class="col-md-6">
-                                <h6>$
-                                    <?php
-                                    // ! SESSIONS
-                                    echo $total;
-                                    ?>
-                                </h6>
-                            </div>
-                        </div>
+                            
+                        }
+
+                        ?>
                     </div>
                 </div>
+
             </div>
         </div>
 
