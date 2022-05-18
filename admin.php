@@ -1,13 +1,11 @@
 <?php
-
 session_start();
-if ($_SESSION['admin'] == 1)
-    header("location: admin.php");
-if (!isset($_SESSION['nombre_usuario'])) {
-    header("location: login_signin.php");
+if (isset($_SESSION['nombre_usuario'])) {
+    header("location: tienda_session.php");
 }
-require_once('./item.php');
-
+if ($S_SESSION['admin'] = 0) {
+    header("location: tienda_session.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -55,86 +53,29 @@ require_once('./item.php');
                         <ul class="nav">
                             <li><a href="index.php">Home</a></li>
                             <li class="scroll-to-section"><a href="#top" class="active">Tienda</a></li>
-
-                            <li><a href="cuenta.php">Cuenta</a></li>
-                            <li><a href="cerrar_session.php">Cerrar Sesión</a></li>
-                            <li>
-                                <a href="carrito.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito
-                                    <?php
-                                    // ! CUENTA EL NUMERO DE ITEMS DE CARRITO
-                                    if (isset($_SESSION['nombre_usuario'])) {
-
-                                        $con = mysqli_connect("localhost", "a00348428", "p0348428_Rockeilo", "cafe");
-                                        if (isset($_SESSION['nombre_usuario'])) {
-                                            $usuario = $_SESSION['nombre_usuario'];
-                                            $verifica = mysqli_query($con, "SELECT cantidad FROM carrito WHERE id_usuario= '$usuario'");
-                                            $existe = mysqli_num_rows($verifica);
-                                            $count = 0;
-                                            while ($row = mysqli_fetch_array($verifica)) {
-                                                $count = $count + (int)$row['cantidad'];
-                                            }
-                                            echo "<span class='badge bg-primary rounded-pill'>$count</span>";
-                                        }
-                                    }
-                                    ?>
-                                </a>
-                            </li>
+                            <li><a href="contacto.php">Contacto</a></li>
+                            <li><a href="login_signin.php">Registro/Inicio de Sesión</a></li>
                         </ul>
+                        <a class='menu-trigger'>
+                            <span>Login/Sign In</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
                     </nav>
                 </div>
             </div>
-            <?php
-
-            if (isset($_POST['agregar'])) {
-                $valor = $_POST['producto_id'];
-
-                echo "
-                    <div class='alert alert-success' role='alert'>
-                    Se agrego el producto<br></div>
-                    ";
-                echo "<meta http-equiv='refresh' content='2'>";
-
-
-                $con = mysqli_connect("localhost", "a00348428", "p0348428_Rockeilo", "cafe");
-                if (isset($_SESSION['nombre_usuario'])) {
-                    $usuario = $_SESSION['nombre_usuario'];
-                    $verifica = mysqli_query($con, "SELECT * FROM carrito WHERE id_usuario = '$usuario' AND id_producto = '$valor' ");
-                    $numberrows = mysqli_num_rows($verifica);
-                    if ($numberrows != 0) {
-
-                        while ($row = mysqli_fetch_array($verifica)) {
-                            $avalor = $row['cantidad'];
-                        }
-
-                        $nvalor = $avalor + 1;
-                        $agrega = mysqli_query($con, "UPDATE carrito SET cantidad = '$nvalor' WHERE id_usuario = '$usuario' AND id_producto = '$valor'");
-
-                        while ($row = mysqli_fetch_array($verifica)) {
-                            $count = $count + (int)$row['cantidad'];
-                        }
-                    } else {
-                        $fecha = new DateTime();
-                        $id_carrito = date_timestamp_get($fecha);
-                        $inserta = mysqli_query($con, "INSERT INTO carrito (id_carrito, id_producto, id_usuario, cantidad) VALUES ('$id_carrito','$valor','$usuario','1')");
-                    }
-                }
-            }
-
-            ?>
         </div>
     </header>
 
     <!-- ***** Main Banner Area Start ***** -->
 
     <section class="heading-page header-text" id="top">
-
-        <div class="video-overlay2 header-text">
+        <div class="video-overlay header-text">
             <div class="container">
                 <div class="row">
                     <span style="height: 155px; display: block;"></span>
                     <div class="col-lg-12">
                         <div class="caption">
-                            <h2>Tienda</h2>
+                            <h2>Admin</h2>
                             <div class="main-button-red">
                                 <div class="scroll-to-section"><a href="#contact">Conoce nuestros productos</a></div>
                             </div>
@@ -145,42 +86,7 @@ require_once('./item.php');
         </div>
     </section>
 
-    <section class="meetings-page" id="meetings">
-        <div class="container">
-            <div class="col-lg-12">
-                <div class="row grid">
 
-                    <?php
-                    getdata()
-                    ?>
-
-                </div>
-            </div>
-            <!-- <div class="col-lg-12">
-                <div class="pagination">
-                    <ul>
-                        <li><a href="#">1</a></li>
-                        <li class="active"><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                    </ul>
-                </div>
-            </div> -->
-        </div>
-        </div>
-        </div>
-        </div>
-        <div class="footer">
-            <p>Copyright © 2022
-                <br>
-                Diseñado por: <a href="https://github.com/bryanvrgsc" target="_parent" title="GitHub">Bryan
-                    Vargas</a>
-                <br>
-                Distribuido por: <a href="https://www.anahuac.mx  " target="_blank" title="Universidad Anáhuac">Universidad
-                    Anáhuac</a>
-            </p>
-        </div>
-    </section>
 
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->

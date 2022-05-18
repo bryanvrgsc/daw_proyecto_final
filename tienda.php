@@ -200,7 +200,7 @@ if (isset($_SESSION['nombre_usuario'])) {
 
                             </div>
                         </div>
-                        <div class="col-lg-12">
+                        <!-- <div class="col-lg-12">
                             <div class="pagination">
                                 <ul>
                                     <li><a href="#">1</a></li>
@@ -209,7 +209,7 @@ if (isset($_SESSION['nombre_usuario'])) {
                                     <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

@@ -58,35 +58,7 @@
                 header("location: tienda_session.php");
             }
 
-            // $user = "bryanvargas";
-            // $password = "Rockito5515";
-            // $host = "localhost";
-            // $port = "5432";
-            // $dbname = "cafe";
-            // $strconn = "host=$host port=$port dbname=$dbname user=$user password=$password";
-            // $conn = mysqli_connect($strconn);
             $con = mysqli_connect("localhost", "a00348428", "p0348428_Rockeilo", "cafe");
-            // if (!$con) {
-            //     echo "NO se conecto a la base\n";
-            // }
-            // if (mysqli_connect_errno()) {
-            //     echo "Failed to connect to MySQL: " . mysqli_connect_error();
-            // }
-            // if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            //     if (!empty($_POST["nombre"]) || !empty($_POST["apellido"]) || !empty($_POST["email"])) {
-            //         $nombre = $_POST["nombre"];
-            //         $apellido = $_POST["apellido"];
-            //         $email = $_POST["email"];
-            //         $query = pg_query($conn, "INSERT  INTO usuarios(nombre, apellido, email) VALUES ('$nombre','$apellido','$email');");
-            //         $query = pg_query($conn, "INSERT  INTO usuarios(nombre, apellido, email) VALUES ('nombretest','apellidotest','emailtest');");
-            //         if ($query) {
-            //             echo "
-            //                 <div class='alert alert-success' role='alert'>
-            //                 Se registro con éxito <br></div>
-            //             ";
-            //         }
-            //     }
-            // }
 
             function write_to_console($data)
             {
@@ -106,14 +78,11 @@
                     $password = $_POST["password"];
 
                     if (empty($_POST["nombre"])) {
-                        // $numErr = "Ingrese el nombre";
                     } else if (empty($_POST["email"])) {
-                        // $numErr = "Ingrese el email";
                     } else if (empty($_POST["password"])) {
-                        // $numErr = "Ingrese el password";
                     } else {
                         mysqli_query($con, "INSERT INTO usuario (id_usuario, nombre, email, password, fecha_nacimiento, datos_bancarios)
-                        VALUES ('$string', '$nombre', '$email', '$password','0000-00-00','01234567890');");
+                        VALUES ('$string', '$nombre', '$email', '$password','01-01-0001','01234567890');");
                         echo "
                          <div class='alert alert-success' role='alert'>
                          Se registro con éxito <br></div>
@@ -127,21 +96,19 @@
                     $logpassword = $_POST["logpassword"];
 
                     if (empty($_POST["logemail"])) {
-                        // $numErr = "Ingrese el email";
                     } else if (empty($_POST["logpassword"])) {
-                        // $numErr = "Ingrese el password";
                     } else {
                         $query = mysqli_query($con, "SELECT * FROM usuario WHERE email = '$logemail' AND password = '$logpassword'");
 
                         while ($row = mysqli_fetch_array($query)) {
                             $id = $row['id_usuario'];
+                            $admin = $row['admin'];
                         }
-                        // $numErr = "DATOS GUARDADOS EXITOSAMENTE *";
                         $nr = mysqli_num_rows($query);
 
-                        // if ($logemail == "bryanvrgsc@gmail.com") {
                         if ($nr == 1) {
                             $_SESSION['nombre_usuario'] = $id;
+                            $_SESSION['admin'] = $admin;
 
                             header("location: tienda_session.php");
                             mysqli_close($con);
@@ -256,10 +223,6 @@
             </p>
         </div>
     </section>
-
-
-
-
 
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->
