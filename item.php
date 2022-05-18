@@ -124,25 +124,119 @@ function listacarrito($producto_nombre, $producto_precio, $producto_imagen, $pro
     echo $listacarrito;
 }
 
-function listausuario($id_usuario, $nombre, $email, $password, $fecha_nacimiento, $datos_bancarios)
+function listausuario($nombre, $email, $fecha_nacimiento, $datos_bancarios)
 {
 
     $listacarrito = "
 
     <div class='p-3 mb-2 bg-white text-dark'>
         <div class='container'>
-        <div class='row'>
-        <div class='col-2'>
-            
+            <div class='row'>
+                <div class='col'>
+                    Nombre
+                </div>
+                <div class='col'>
+                    $nombre
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col'>
+                    Email
+                </div>
+                <div class='col'>
+                    $email
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col'>
+                    Fecha de Nacimiento
+                </div>
+                <div class='col'>
+                    $fecha_nacimiento
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col'>
+                    Datos bancarios
+                </div>
+                <div class='col'>
+                    $datos_bancarios
+                </div>
+            </div>
         </div>
-        <div class='col'>
-       
+    </div>   
+
+    ";
+
+    echo $listacarrito;
+}
+
+function listaproductos($id_producto, $nombre, $precio, $imagen_principal, $cantidad, $fabricante, $origen)
+{
+
+    $listacarrito = "
+
+    <div class='p-3 mb-2 bg-white text-dark'>
+        <div class='container'>
+            <div class='row'>
+                <div class='col'>
+                    Imagen principal
+                </div>
+                <div class='col'>
+                    <div class='col-2'>
+                    <img src='data:image/jpg;base64,$imagen_principal' alt='$nombre' />
+                    </div>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col'>
+                    ID Producto
+                </div>
+                <div class='col'>
+                    $id_producto
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col'>
+                    Nombre
+                </div>
+                <div class='col'>
+                    $nombre
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col'>
+                    Precio
+                </div>
+                <div class='col'>
+                    $precio
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col'>
+                    Cantidad en Almacén
+                </div>
+                <div class='col'>
+                    $cantidad
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col'>
+                    Fabricante
+                </div>
+                <div class='col'>
+                    $fabricante
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col'>
+                    Origen
+                </div>
+                <div class='col'>
+                    $origen
+                </div>
+            </div>
         </div>
-        <div class='col'>
-            
-        </div>
-        </div>
-        </div> 
     </div>   
 
     ";

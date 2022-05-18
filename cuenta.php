@@ -156,7 +156,9 @@ require_once('./item.php');
 
                             $usuario = $_SESSION['nombre_usuario'];
                             $verifica = mysqli_query($con, "SELECT * FROM usuario WHERE id_usuario= '$usuario'");
-                            
+                            while ($row = mysqli_fetch_assoc($verifica)) {
+                                listausuario($row['nombre'], $row['email'], $row['fecha_nacimiento'], $row['datos_bancarios']);
+                            }
                         }
                         ?>
                     </div>
