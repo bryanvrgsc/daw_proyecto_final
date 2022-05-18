@@ -157,7 +157,7 @@
                     <form id="contact" action="" method="post">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h2>Registrate</h2>
+                                <h2>Registro</h2>
                             </div>
                             <div class="col-lg-12">
                                 <fieldset>
