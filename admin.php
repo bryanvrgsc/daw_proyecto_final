@@ -123,7 +123,40 @@ require_once('./item.php');
         </div>
     </section>
 
+    <section class="meetings-page" id="meetings">
+        <div class="container">
+            <div class="row grid">
+                <div class="col-lg-12">
+                    <div class="shoppin-cart">
+                        <h6>DETALLES DEL USUARIO</h6>
+                        <?php
+                        if (isset($_SESSION['nombre_usuario'])) {
+                            $con = mysqli_connect("localhost", "a00348428", "p0348428_Rockeilo", "cafe");
 
+                            $usuario = $_SESSION['nombre_usuario'];
+                            $verifica = mysqli_query($con, "SELECT * FROM ordenes ");
+                            while ($row = mysqli_fetch_assoc($verifica)) {
+                                listaordenes($row['id_compra'], $row['id_producto'], $row['id_usuario'], $row['fecha_compra'], $row['cantidad']);
+                            }
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="footer">
+            <p>Copyright © 2022
+                <br>
+                Diseñado por: <a href="https://github.com/bryanvrgsc" target="_parent" title="GitHub">Bryan
+                    Vargas</a>
+                <br>
+                Distribuido por: <a href="https://www.anahuac.mx  " target="_blank" title="Universidad Anáhuac">Universidad
+                    Anáhuac</a>
+            </p>
+        </div>
+    </section>
 
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->

@@ -243,3 +243,58 @@ function listaproductos($id_producto, $nombre, $precio, $imagen_principal, $cant
 
     echo $listacarrito;
 }
+
+function listaordenes($id_orden, $id_producto, $id_usuario, $fecha_compra, $cantidad)
+{
+
+    $listacarrito = "
+
+    <div class='p-3 mb-2 bg-white text-dark'>
+        <div class='container'>
+            <div class='row'>
+                <div class='col'>
+                    ID Orden
+                </div>
+                <div class='col'>
+                    $id_orden
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col'>
+                    ID Producto
+                </div>
+                <div class='col'>
+                    $id_producto
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col'>
+                    ID Usuario
+                </div>
+                <div class='col'>
+                    $id_usuario
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col'>
+                    Fecha de Compra
+                </div>
+                <div class='col'>
+                    $fecha_compra
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col'>
+                    Cantidad de producto
+                </div>
+                <div class='col'>
+                    $cantidad
+                </div>
+            </div>
+        </div>
+    </div>   
+
+    ";
+
+    echo $listacarrito;
+}
