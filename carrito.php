@@ -36,7 +36,6 @@ if (isset($_GET['remove'])) {
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
@@ -64,7 +63,7 @@ if (isset($_GET['remove'])) {
                         </button>
 
                         <ul class="nav">
-                            <li><a href="index.php">Home</a></li>
+                            <li><a href="index_session.php">Home</a></li>
                             <li><a href="tienda_session.php">Tienda</a></li>
                             <li><a href="cuenta.php">Cuenta</a></li>
                             <li><a href="cerrar_session.php">Cerrar Sesión</a></li>

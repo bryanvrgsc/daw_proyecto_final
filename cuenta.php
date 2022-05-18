@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-if ($_SESSION['admin'] == 0)
-    header("location: login_signin.php");
+if ($_SESSION['admin'] == 1)
+    header("location: admin.php");
 if (!isset($_SESSION['nombre_usuario'])) {
     header("location: login_signin.php");
 }
@@ -53,11 +53,31 @@ require_once('./item.php');
                         </button>
 
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
-                            <li><a href="productos.php">Productos</a></li>
-                            <li><a href="usuarios.php">Usuarios</a></li>
+                            <li><a href="index_session.php">Home</a></li>
+                            <li><a href="tienda_session.php">Tienda</a></li>
+                            <li class="scroll-to-section"><a href="#top" class="active">Cuenta</a></li>
                             <li><a href="cerrar_session.php">Cerrar Sesión</a></li>
+                            <li>
+                                <a href="carrito.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito
+                                    <?php
+                                    // ! CUENTA EL NUMERO DE ITEMS DE CARRITO
+                                    if (isset($_SESSION['nombre_usuario'])) {
 
+                                        $con = mysqli_connect("localhost", "a00348428", "p0348428_Rockeilo", "cafe");
+                                        if (isset($_SESSION['nombre_usuario'])) {
+                                            $usuario = $_SESSION['nombre_usuario'];
+                                            $verifica = mysqli_query($con, "SELECT cantidad FROM carrito WHERE id_usuario= '$usuario'");
+                                            $existe = mysqli_num_rows($verifica);
+                                            $count = 0;
+                                            while ($row = mysqli_fetch_array($verifica)) {
+                                                $count = $count + (int)$row['cantidad'];
+                                            }
+                                            echo "<span class='badge bg-primary rounded-pill'>$count</span>";
+                                        }
+                                    }
+                                    ?>
+                                </a>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -113,14 +133,39 @@ require_once('./item.php');
                     <span style="height: 155px; display: block;"></span>
                     <div class="col-lg-12">
                         <div class="caption">
-                            <h2>Admin</h2>
+                            <h2>Cuenta</h2>
                             <div class="main-button-red">
-                                <div class="scroll-to-section"><a href="#contact"> <br> </a></div>
+                                <div class="scroll-to-section"><a href="#contact">Conoce nuestros productos</a></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="meetings-page" id="meetings">
+        <div class="container">
+            <div class="col-lg-12">
+                <div class="row grid">
+
+
+
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="footer">
+            <p>Copyright © 2022
+                <br>
+                Diseñado por: <a href="https://github.com/bryanvrgsc" target="_parent" title="GitHub">Bryan
+                    Vargas</a>
+                <br>
+                Distribuido por: <a href="https://www.anahuac.mx  " target="_blank" title="Universidad Anáhuac">Universidad
+                    Anáhuac</a>
+            </p>
         </div>
     </section>
 

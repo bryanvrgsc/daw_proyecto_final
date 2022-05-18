@@ -25,7 +25,6 @@ require_once('./item.php');
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
@@ -53,7 +52,7 @@ require_once('./item.php');
                         </button>
 
                         <ul class="nav">
-                            <li><a href="index.php">Home</a></li>
+                            <li><a href="index_session.php">Home</a></li>
                             <li class="scroll-to-section"><a href="#top" class="active">Tienda</a></li>
 
                             <li><a href="cuenta.php">Cuenta</a></li>
@@ -136,7 +135,7 @@ require_once('./item.php');
                         <div class="caption">
                             <h2>Tienda</h2>
                             <div class="main-button-red">
-                                <div class="scroll-to-section"><a href="#contact">Conoce nuestros productos</a></div>
+                                <div class="scroll-to-section"><a href="#meetings">Conoce nuestros productos</a></div>
                             </div>
                         </div>
                     </div>
@@ -156,19 +155,6 @@ require_once('./item.php');
 
                 </div>
             </div>
-            <!-- <div class="col-lg-12">
-                <div class="pagination">
-                    <ul>
-                        <li><a href="#">1</a></li>
-                        <li class="active"><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                    </ul>
-                </div>
-            </div> -->
-        </div>
-        </div>
-        </div>
         </div>
         <div class="footer">
             <p>Copyright © 2022

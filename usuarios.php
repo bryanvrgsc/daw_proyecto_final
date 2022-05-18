@@ -53,9 +53,9 @@ require_once('./item.php');
                         </button>
 
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                            <li><a href="admin.php">Home</a></li>
                             <li><a href="productos.php">Productos</a></li>
-                            <li><a href="usuarios.php">Usuarios</a></li>
+                            <li class="scroll-to-section"><a href="#top" class="active">Usuarios</a></li>
                             <li><a href="cerrar_session.php">Cerrar Sesión</a></li>
 
                         </ul>
@@ -113,7 +113,7 @@ require_once('./item.php');
                     <span style="height: 155px; display: block;"></span>
                     <div class="col-lg-12">
                         <div class="caption">
-                            <h2>Admin</h2>
+                            <h2>Usuarios</h2>
                             <div class="main-button-red">
                                 <div class="scroll-to-section"><a href="#contact"> <br> </a></div>
                             </div>
