@@ -123,3 +123,29 @@ function listacarrito($producto_nombre, $producto_precio, $producto_imagen, $pro
 
     echo $listacarrito;
 }
+
+function listausuario($id_usuario, $nombre, $email, $password, $fecha_nacimiento, $datos_bancarios)
+{
+
+    $listacarrito = "
+
+    <div class='p-3 mb-2 bg-white text-dark'>
+        <div class='container'>
+        <div class='row'>
+        <div class='col-2'>
+            
+        </div>
+        <div class='col'>
+       
+        </div>
+        <div class='col'>
+            
+        </div>
+        </div>
+        </div> 
+    </div>   
+
+    ";
+
+    echo $listacarrito;
+}

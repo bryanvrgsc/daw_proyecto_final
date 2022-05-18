@@ -146,17 +146,26 @@ require_once('./item.php');
 
     <section class="meetings-page" id="meetings">
         <div class="container">
-            <div class="col-lg-12">
-                <div class="row grid">
+            <div class="row grid">
+                <div class="col-lg-12">
+                    <div class="shoppin-cart">
+                        <h6>DETALLES DEL USUARIO</h6>
+                        <?php
+                        if (isset($_SESSION['nombre_usuario'])) {
+                            $con = mysqli_connect("localhost", "a00348428", "p0348428_Rockeilo", "cafe");
 
-
-
+                            $usuario = $_SESSION['nombre_usuario'];
+                            $verifica = mysqli_query($con, "SELECT * FROM usuario WHERE id_usuario= '$usuario'");
+                            
+                        }
+                        ?>
+                    </div>
                 </div>
+
             </div>
         </div>
-        </div>
-        </div>
-        </div>
+
+
         <div class="footer">
             <p>Copyright © 2022
                 <br>
